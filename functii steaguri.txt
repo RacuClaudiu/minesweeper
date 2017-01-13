@@ -1,0 +1,77 @@
+void setFlag()
+{
+    if(tabla[x][y]!='F')
+        Flag();
+    else
+        UnFlag();
+}
+void Flag()
+{
+    bool selected = false;
+    while(!selected) {
+        if(x >= 0 && x < n && y >= 0 && y < m)
+            if(tabla[x][y]==9){
+            }
+            tabla[x][y]='F';
+            selected = true;
+    }
+}
+void UnFlag()
+{
+    bool selected=true;
+    while(!selected){
+        if(x >= 0 && x < n && y >= 0 && y < m)
+
+            selected=false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+int steag(int u)
+{
+    int stegulet[100];
+    if(tabla[i][j]!='F'){
+    stegulet[4*i+2*j+1]=tabla[i][j];
+    tabla[i][j]='F';
+    }
+    if(tabla[i][j]=='F')
+        tabla[i][j]=stegulet[4*i+2*j+1];
+}
+
+
+
+void setFlag() {
+    bool selected = false;
+    while(!selected) {
+        int x;
+        int y;
+        cout << "Input X (1 - " << (n) << ")" << endl;
+        cin >> x;
+        cout << "Input Y (1 - " << (m) << ")" << endl;
+        cin >> y;
+        x--;
+        y--;
+        if(x >= 0 && x < n && y >= 0 && y < m) {
+            tabla[x][y] ='F';
+            selected = true;
+        } else {
+            cout << "(X,Y) Values out of range!" << endl;
+        }
+    }
+}
+
+
+
+
+
