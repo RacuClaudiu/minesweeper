@@ -5,11 +5,25 @@ using namespace std;
 void reluare();
 int random(int, int);
 void dezvaluire(int);
-int n,m,i,j,bomb=0,x,y,q,z;
+void alegere();
+int n=0,m=0,i=0,j=0,bomb=0,x,y,q,z;
 int jocterminat;
+int steag();
+int tabla[100][100];
 int main()
 {
- B1:   int tabla[100][100];
+    int steag[100],u=0,v=0,uv=0,ch;
+
+
+
+
+
+
+
+
+
+
+ B1:  // int tabla[100][100];
     cout<<endl;
     cout<<"-----------BUN VENIT PE MINESWEEPER---------"<<endl<<endl;
     Begin:	unsigned short choice;
@@ -52,13 +66,13 @@ int main()
         break;
     case 5:
         c1:
-        cout<<"lungime"<<" "<<"(minim : 2; maxim 19): ";
+        cout<<"lungime"<<" "<<"(minim : 2; maxim 15): ";
         cin>>n;
-        cout<<"latime"<<" "<<" (minim : 2; maxim 19): ";
+        cout<<"latime"<<" "<<" (minim : 2; maxim 15): ";
         cin>>m;
         cout<<"numar de bombe "<<"(maxim: "<<n*m-1<<"): ";
         cin>>bomb;
-        if(n<2 || m<2 || n>19 || m>19 || bomb>n*m-1)
+        if(n<2 || m<2 || n>15 || m>15 || bomb>n*m-1)
         {
             cout<<"Numere prea mari, va rugam reintroduceti:"<<endl<<endl;
             goto c1;
@@ -67,7 +81,7 @@ int main()
     case 6:
         exit(0);
     }
-    x=0;
+   F3: x=0;
     y=0;
     jocterminat=0;
     for(i=0;i<m;i++){
@@ -130,8 +144,8 @@ int main()
 do{
         bomb=0;
         q=0;
-    system("CLS");
-    cout<<"   ";
+   D1: system("CLS");
+    cout<<"    ";
     for(j=0;j<n;j++)
         cout<<j<<" ";
     cout<<endl;
@@ -139,8 +153,14 @@ do{
     {
         for(j=0;j<n;j++)
             {
-                if(j==0)
-                cout << i << " |";
+                if(j==0){
+                cout << i ;
+                if(i<10){
+                        cout<<" ";
+                    }
+                    cout<< " |";
+
+                }
         if(vector[i][j]==1)
             dezvaluire(tabla[i][j]);
         else
@@ -161,12 +181,54 @@ do{
                          }
                          if(jocterminat == 0)
                          {
-                         cout << "X: ";
+
+                ////////////////////////////////////////////////////////////////////////////
+
+
+  F1:  cout<<" Alegeti una din cele doua variante:";
+    cout<<" 1) click;";
+    cout<<" 2) stegulet;"<<endl;
+    cin>>ch;
+    cout << "X: ";
                          cin >> x;
                          cout << "Y: ";
                          cin >> y;
+     u=4*x;
+    v=2*y;
+    v=v+x;
+    uv=u+v;
+    if(ch<1 || ch>2)
+    {
+        system("CLS");
+         cout << ">>> Ai ales gresit! <<<" << endl;
+         cout<<endl;
+         goto F1;
+    }
+    cout<<"steag in punctul: "<<x<<y;
+    switch(ch)
+    {
+        case 1:
+            break;
+        case 2:
+            if(tabla[x][y]==10)
+                tabla[x][y]=steag[uv];
+            if(tabla[x][y]!=10)
+            {
+                steag[uv]=tabla[x][y];
+                tabla[x][y]=10;
+                cout<<"steag in punctul: "<<x<<y;
+            }
+            break;
+    }
+
+
+
+
+
+
+
                          }
-                         if(tabla[x][y] == 9)
+                        if(tabla[x][y] == 9)
                          {
                              system("CLS");
                              cout << "---------Ai lovit o mina!----------" << endl;
@@ -247,4 +309,35 @@ int random(int i, int b)
            ran >>= ran / (ran * i) + (i * 1337);
            ran = ran % b;
            return ran;
+}
+void alegere()
+{
+    char stegulet[100];
+    int q,u;
+    cout<<" 1) click;";
+    cout<<" 2) stegulet;"<<endl;
+    cin>>q;
+    switch(q)
+    {
+    case 1:
+        break;
+    case 2:
+         u=((4*i)+(2*j)+1);
+    if(tabla[i][j]!='F'){
+    stegulet[u]=tabla[i][j];
+    tabla[i][j]='F';
+    }
+    cout<<tabla[i][j];
+        break;
+    }
+}
+int steag(int u)
+{
+    int stegulet[100];
+    if(tabla[i][j]!='F'){
+    stegulet[4*i+2*j+1]=tabla[i][j];
+    tabla[i][j]='F';
+    }
+    if(tabla[i][j]=='F')
+        tabla[i][j]=stegulet[4*i+2*j+1];
 }
