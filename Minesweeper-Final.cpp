@@ -6,7 +6,7 @@ void reluare();
 int random(int, int);
 void dezvaluire(int);
 void alegere();
-int n=0,m=0,i=0,j=0,bomb=0,boo=0,x,y,q,z,defuse=0;
+int n=0,m=0,i=0,j=0,bomb=0,boo=0,x=0,y=0,q,z,defuse=0;
 int JocTerminat;
 int steag();
 int tabla[100][100];
@@ -14,16 +14,17 @@ int main()
 {
     int steag[100],u=0,v=0,uv=0,ch;
  B1:
+     system("CLS");
     cout<<endl;
-    cout<<"-----------BUN VENIT PE MINESWEEPER---------"<<endl<<endl;
+    cout<<"-----------------BUN VENIT PE MINESWEEPER--------------"<<endl<<endl;
     Begin:	unsigned short choice;
     cout<<"Selectati nivelul de dificultate: "<<endl;
     cout<<" "<<"1) Incepator;"<<endl;
     cout<<" "<<"2) Usor;"<<endl;
     cout<<" "<<"3) Intermediar;"<<endl;
     cout<<" "<<"4) Expert;"<<endl;
-    cout<<" "<<"5) Custom..."<<endl;
-    cout<<" "<<"6) Iesire"<<endl;
+    cout<<" "<<"5) Personalizat..."<<endl;
+    cout<<" "<<"6) Iesire;"<<endl;
     cin>>choice;
     if(choice<=0 || choice >=7)
     {
@@ -75,9 +76,12 @@ int main()
         }
         break;
     case 6:
+        cout<<endl<<endl;
+        cout<<"-------------APASATI ORICE TASTA PENTRU A IESI DIN JOC------------"<<endl<<endl;
         exit(0);
     }
-   F3: x=0;
+F3:
+    x=0;
     y=0;
     JocTerminat=0;
     for(i=0;i<m;i++){
@@ -139,7 +143,7 @@ do{
         bomb=0;
         q=0;
    D1: system("CLS");
-   cout<<endl<<endl;
+   cout<<endl;
    cout<<"------BOMBE RAMASE: "<<boo<<" -----"<<endl<<endl;
     cout<<"    ";
     for(j=0;j<n;j++)
@@ -169,11 +173,12 @@ do{
             bomb++;
         }
         }
+        cout<<endl;
         win:
             if(q >= ((m*n) - bomb) || boo==0)                                                           //Mesaj "castig"
                          {
                              cout<<endl;
-                        cout << "--------Felicitari! Ai castigat!-------" << endl;
+                        cout << "-------------Felicitari! Ai castigat!--------------" << endl;
                                     JocTerminat = 1;
                          }
                          if(JocTerminat == 0)
@@ -209,7 +214,7 @@ do{
             {
                 steag[uv]=tabla[x][y];
                 tabla[x][y]=10;
-                cout<<"steag in punctul: "<<x<<y;
+               // cout<<"steag in punctul: "<<x<<y;
             }
             break;
     }
@@ -217,7 +222,8 @@ do{
                         if(tabla[x][y] == 9 && boo!=0)
                          {
                              system("CLS");
-                             cout << "---------Ai lovit o mina!----------" << endl;
+                             cout<<endl;
+                               cout<<"-------------Ai lovit o mina. Jocul s-a terminat------------"<<endl<<endl;
                              cout << "   ";
                              for(i=0;i<m;i++)
                                 cout << i << " ";
@@ -227,8 +233,7 @@ do{
                                 {
                                     for(j=0;j<n;j++)
                                         {
-                                            if(j==0)
-                                                cout << i << " |";
+                                            if(j==0)cout << i << " |";
                                                 if(tabla[i][j]==9)
                                                     vector[i][j]=1;
                                                 if(vector[i][j]==1)
@@ -264,14 +269,15 @@ void reluare()
 {
     int choice;
     cout<<endl;
-    cout<<" 1) reia;"<<endl;
-    cout<<" 2) iesire;"<<endl;
+    cout<<" 1) Meniu;"<<endl;
+    cout<<" 2) Iesire;"<<endl;
     cin>>choice;
     switch(choice)
     {
     case 1:
         main();
     case 2:
+        cout<<"-------------APASATI ORICE TASTA PENTRU A IESI DIN JOC------------"<<endl<<endl;
       break;
     }
 }
